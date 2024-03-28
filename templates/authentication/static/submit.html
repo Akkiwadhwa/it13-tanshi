@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Successful</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/thankyou.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column; /* Added to center items vertically */
+            color: #ffffff;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px; /* Adjust as needed */
+        }
+        .success-message {
+            background-color: #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        .details {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .details label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        .details p {
+            margin: 0;
+            padding: 5px;
+            background-color: #ffffff;
+            border-radius: 4px;
+        }
+        .exit-button {
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: fixed; /* Fixed position */
+            top: 10px; /* Adjust top position */
+            right: 10px; /* Adjust right position */
+        }
+        .exit-button:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="exit-button" onclick="exitWebsite()">Exit</button>
+
+    <script>
+        // Exit the website function
+        function exitWebsite() {
+            window.close(); // Close the current browser window
+        }
+    </script>
+
+</body>
+</html>

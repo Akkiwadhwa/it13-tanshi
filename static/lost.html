@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center top; /* Adjusted background position */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .lost-form {
+            position: relative;
+            background-color: #e0e5f2;
+            padding: 30px; /* Increased padding */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            margin-top: 120px; /* Increased margin */
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .form-question {
+            margin-bottom: 15px;
+        }
+
+        .form-question label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333333;
+        }
+
+        .form-question input, .form-question select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .button {
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #cc0000;
+        }
+
+        #otherColor,
+        #otherMaterial,
+        #otherBrand,
+        #otherModel,
+        #otherShape {
+            display: none;
+        }
+
+        h2 {
+            color: black; /* Changed heading color to black */
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="images/bg.png" alt="Background Image">
+    </div>
+        
+    <div class="lost-form">
+        <form id="lostForm" method="post" action="{% url 'save_lost_item' %}">
+            {% csrf_token %}
+            <h2>Lost Item Details</h2> <!-- Changed heading text -->
+            <div class="form-question">
+                <label for="item-category">Select the lost item category:</label>
+                <select id="item-category" name="item-category" onchange="showQuestions()">
+                    <option value="">Select an item...</option>
+                    <option value="purse">Purse/Bag</option>
+                    <option value="phone">Phone</option>
+                    <option value="bottle">Bottle</option>
+                    <option value="watch">Watch</option>
+                    <option value="umbrella">Umbrella</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <!-- Questions for lost purse -->
+            <div id="purse-questions" class="form-question" style="display: none;">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="aim">Aim & Act</option>
+                </select>
+
+                <label for="size">Size:</label>
+                <select id="size" name="size" required>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+
+                <label for="specificMark">Specific Mark Question:</label>
+                <input type="text" id="specificMark" name="specificMark" required>
+
+                <label for="shape">Shape:</label>
+                <select id="shape" name="shape" onchange="checkOtherShape()" required>
+                    <option value="round">Round</option>
+                    <option value="square">Square</option>
+                    <option value="rectangular">Rectangular</option>
+                    <option value="bulbous">Bulbous</option>
+                    <option value="cylindrical">Cylindrical</option>
+                    <option value="other">Other (Specify Below)</option>
+                </select>
+                <!-- Additional input for shape when "Other" is selected -->
+                <input type="text" id="otherShape" name="otherShape" placeholder="Specify Shape">
+
+                <label for="color">Color:</label>
+                <select id="color" name="color" onchange="checkMaterial()" required>
+                    <option value="black">Black</option>
+                    <option value="brown">Brown</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="other">Other (Specify Below)</option>
+                </select>
+                <!-- Additional input for color when "Other" is selected -->
+                <input type="text" id="otherColor" name="otherColor" placeholder="Specify Color">
+
+                <label for="brand">Brand:</label>
+                <select id="brand" name="brand" required>
+                    <option value="brand1">Baggit</option>
+                    <option value="brand2">Zara</option>
+                    <option value="brand3">H&M</option>
+                    <option value="brand3">Gucci</option>
+                    <option value="brand3">Valentino</option>
+                    <option value="other">Other (Specify Below)</option>
+                    <!-- Add more brands as needed -->
+                </select>
+
+                <label for="material">Material:</label>
+                <select id="material" name="material" required>
+                    <option value="leather">Leather</option>
+                    <option value="fabric">Fabric</option>
+                    <option value="synthetic">Synthetic</option>
+                    <option value="other">Other (Specify Below)</option>
+                </select>
+                <!-- Additional input for material when "Other" is selected -->
+                <input type="text" id="otherMaterial" name="otherMaterial" placeholder="Specify Material">
+            </div>
+            <!-- Questions for lost bottle -->
+            <div id="bottle-questions" class="form-question" style="display: none;">
+                <!-- Watch-specific questions here -->
+                
+                
+            </div>
+            <!-- Questions for lost watch -->
+            <div id="watch-questions" class="form-question" style="display: none;">
+                <!-- Watch-specific questions here -->
+            </div>
+            <!-- Questions for lost phone -->
+            <div id="phone-questions" class="form-question" style="display: none;">
+                <!-- Phone-specific questions here -->
+            </div>
+            <!-- Questions for lost umbrella -->
+            <div id="umbrella-questions" class="form-question" style="display: none;">
+                <!-- Umbrella-specific questions here -->
+            </div>
+            <!-- Questions for other lost items -->
+            <div id="other-questions" class="form-question" style="display: none;">
+                <!-- Questions for other items here -->
+            </div>
+            <button type="submit" class="button">Submit</button>
+        </form>
+    </div>
+
+   
+    <script>
+        function showQuestions() {
+            var selectedItem = document.getElementById('item-category').value;
+            var purseQuestions = document.getElementById('purse-questions');
+            var bottleQuestions = document.getElementById('bottle-questions');
+            var watchQuestions = document.getElementById('watch-questions');
+            var phoneQuestions = document.getElementById('phone-questions');
+            var umbrellaQuestions = document.getElementById('umbrella-questions');
+            var otherQuestions = document.getElementById('other-questions');
+
+            // Hide all item-specific question sections
+            purseQuestions.style.display = 'none';
+            bottleQuestions.style.display = 'none';
+            watchQuestions.style.display = 'none';
+            phoneQuestions.style.display = 'none';
+            umbrellaQuestions.style.display = 'none';
+            otherQuestions.style.display = 'none';
+
+            // Show questions specific to the selected item
+            if (selectedItem === 'purse') {
+                purseQuestions.style.display = 'block';
+            } else if (selectedItem === 'bottle') {
+                bottleQuestions.style.display = 'block';
+            } else if (selectedItem === 'watch') {
+                watchQuestions.style.display = 'block';
+            } else if (selectedItem === 'phone') {
+                phoneQuestions.style.display = 'block';
+            } else if (selectedItem === 'umbrella') {
+                umbrellaQuestions.style.display = 'block';
+            } else if (selectedItem === 'others') {
+                otherQuestions.style.display = 'block';
+            }
+        }
+
+        function checkOtherShape() {
+            var shapeSelect = document.getElementById('shape');
+            var otherShapeInput = document.getElementById('otherShape');
+
+            if (shapeSelect.value === 'other') {
+                otherShapeInput.style.display = 'block';
+                otherShapeInput.setAttribute('required', 'required');
+            } else {
+                otherShapeInput.style.display = 'none';
+                otherShapeInput.removeAttribute('required');
+            }
+        }
+
+        function checkMaterial() {
+            var materialSelect = document.getElementById('material');
+            var otherMaterialInput = document.getElementById('otherMaterial');
+
+            if (materialSelect.value === 'other') {
+                otherMaterialInput.style.display = 'block';
+                otherMaterialInput.setAttribute('required', 'required');
+            } else {
+                otherMaterialInput.style.display = 'none';
+                otherMaterialInput.removeAttribute('required');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Banasthali Vidyapeeth College</title>
+<style>
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 0;
+        background:
+        linear-gradient(red, transparent),
+        linear-gradient(to top left, lime, transparent),
+        linear-gradient(to top right, blue, transparent);
+    background-blend-mode: screen;
+
+/* Two values, one per background */
+background-blend-mode: darken, luminosity;
+
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .image {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .image img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        border: 3px solid #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .about {
+        text-align: justify;
+        line-height: 1.6;
+        color: #333;
+    }
+    h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 16px;
+        color: #666;
+    }
+    .founder-images {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 40px;
+    }
+    .founder {
+        text-align: center;
+    }
+    /* ... Other styles ... */
+
+    .founder img {
+        width: 200px; /* Adjust the width as needed */
+        height: 200px; /* Adjust the height as needed */
+        border-radius: 50%;
+        margin-bottom: 10px;
+        border: 3px solid #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* ... Other styles ... */
+    
+    .founder p {
+        margin: 0;
+    }
+    a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s ease;
+    }
+    a:hover {
+        color: #0056b3;
+    }
+    nav {
+        background: linear-gradient(to bottom, #3498db, #ffffff, #8e44ad);
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav h1 {
+        margin: 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    nav ul li {
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+    nav ul li a:hover {
+        color: rgb(173, 193, 173);
+    }
+    a.goBackLink {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    a.goBackLink:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="signin.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+<div class="container">
+    <div class="image">
+        <img src="static/images/Bv.png" alt="Banasthali Vidyapeeth College Logo">
+    </div>
+    <div class="about">
+        <h1>About Banasthali Vidyapeeth College</h1>
+        <p>
+            Banasthali Vidyapeeth is a prominent women's university in India located in the Tonk district of Rajasthan. Established in 1935 by Pandit Hiralal Shastri and Smt. Ratan Shastri, the college offers education across various disciplines including arts, science, commerce, engineering, and management.
+        </p>
+        <p>
+            At Banasthali Vidyapeeth, we are committed to providing holistic education that emphasizes character development and personality enrichment alongside academic excellence. Our state-of-the-art facilities and vibrant campus life create a nurturing environment for students to grow and excel in their chosen fields.
+        </p>
+        <h1>Lost & Found Web App</h1>
+        <p>
+            In our endeavor to enhance campus life, we are developing a Lost & Found web application tailored for the Banasthali Vidyapeeth community. This application will streamline the process of reporting lost items and help reunite students and staff with their belongings efficiently.
+        </p>
+        <p>
+            The Lost & Found web app will allow users to submit reports about lost items, provide details such as the item description, location, and contact information. Additionally, it will feature a searchable database where users can check for found items and claim them if they match their lost belongings.
+        </p>
+    </div>
+    <br>
+    <h1>We are team IT13 Founders of Lost & Found</h1>
+    <div class="founder-images">
+        <div class="founder">
+            <img src="static/images/tanshi.jpg" alt="Founder 1">
+            <p><a href="https://www.linkedin.com/in/tanshi-khandelwal-30a1b8209/">Tanshi Khandelwal</a></p>
+        </div>
+        <div class="founder">
+            <img src="static/images/tarushi.jpg" alt="Founder 2">
+            <p><a href="https://www.linkedin.com/in/tarushi-dubey2003/">Tarushi Dubey</a></p>
+        </div>
+        <div class="founder">
+            <img src="static/images/yashi.jpg" alt="Founder 3">
+            <p><a href="https://www.linkedin.com/in/yashidwivedi/">Yashi Dwivedi</a></p>
+        </div>
+    </div>
+</div>
+<a href="contact.html" class="goBackLink">Go Back</a>   
+</body>
+</html>

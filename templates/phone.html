@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Phone Details</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('images/phone.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column; /* Added to center items vertically */
+            color: #fff; /* Text color */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px; /* Adjust as needed */
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>') no-repeat right 10px center/15px 15px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* Additional style for the color input when "Other" is selected */
+        #otherColor, #otherBrand, #otherModel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lost Phone Details</h1>
+    <form method="post" action="{% url 'save_lost_item' %}" >
+        {% csrf_token %}
+    <form id="lostPhoneForm" action="thank_you.html" method="post">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="location">Location:</label>
+        <select id="location" name="location" required>
+            <option value="aim">Aim & Act</option>
+        </select>
+        
+        <label for="size">Size:</label>
+        <select id="size" name="size" required>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+
+        <label for="specificMark">Specific Mark Question:</label>
+        <input type="text" id="specificMark" name="specificMark" required>
+
+        <label for="shape">Shape:</label>
+        <select id="shape" name="shape" onchange="checkOtherShape()" required>
+            <option value="round">Null</option>
+        </select>
+        <!-- Additional input for shape when "Other" is selected -->
+       
+
+        <label for="color">Color:</label>
+        <select id="color" name="color" onchange="checkOtherColor()" required>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="silver">Silver</option>
+            <option value="gold">Gold</option>
+            <option value="other">Other (Specify Below)</option>
+        </select>
+        <!-- Additional input for color when "Other" is selected -->
+        <input type="text" id="otherColor" name="otherColor" placeholder="Specify Color">
+
+        <label for="brand">Brand:</label>
+        <select id="brand" name="brand" onchange="checkOtherBrand()" required>
+            <option value="apple">Apple</option>
+            <option value="samsung">Samsung</option>
+            <option value="google">Google</option>
+            <option value="samsung">Oppo</option>
+            <option value="google">Redmi</option>
+
+            <option value="other">Other (Specify Below)</option>
+            <!-- Add more brands as needed -->
+        </select>
+        <!-- Additional input for brand when "Other" is selected -->
+        <input type="text" id="otherBrand" name="otherBrand" placeholder="Specify Brand">
+
+        <label for="material">Material:</label>
+        <select id="material" name="material">
+            <option value="leather">Null</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // Function to check if "Other" is selected in the color dropdown
+    
+    </script>
+
+</body>
+</html>

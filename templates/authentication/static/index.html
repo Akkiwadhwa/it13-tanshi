@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: 'Times New Roman',Times, serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            background-size: cover;
+            background-position: center top;
+        }
+        
+        .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .close {
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block; /* Added for proper button alignment */
+        }
+
+        button a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="static/images/bg.png" alt="Background Image">
+    </div>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <h3>Welcome to lost and found!</h3>
+
+    {% if user.is_authenticated %}
+    <h3>Hello {{ fname }}!</h3>
+    <h4>You're successfully logged in.</h4>
+    <button type="submit"><a href="/signout">Sign Out</a></button>
+   
+    {% else %}
+    <br/>
+    <br/>
+    <button type="submit"><a href="/signup">Sign Up</a></button>
+    <button type="submit"><a href="/signin">Sign In</a></button>
+    {% endif %}
+</body>
+</html>

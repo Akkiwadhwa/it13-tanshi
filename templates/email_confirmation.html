@@ -1,0 +1,12 @@
+{% autoescape off %}
+
+ Welcome to lost and found web  Login!!
+ Hello {{ name }}!!
+ Please confirm your email by clicking on the following link.
+
+
+ <!-- Example email_confirmation.html -->
+ Confirmation Link: http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+
+ {% endautoescape %}
