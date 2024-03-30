@@ -24,4 +24,5 @@ urlpatterns = [
       path('save_found_item',views.save_found_item,name="save_found_item"),
     path('thank_you', views.thank_you, name='thank_you'),
      path('phone.html', views.phone_page, name='phone-html'), 
+     path('response', views.response, name='response'),
 ]

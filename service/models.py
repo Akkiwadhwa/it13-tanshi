@@ -28,6 +28,7 @@ class  lost_item(models.Model):
     brand = models.CharField(max_length=100)
     material = models.CharField(max_length=100)
     item_category = models.CharField(max_length=50, choices=ITEM_CHOICES,default='')
+    image = models.ImageField(upload_to="media/images",default="")
     def __str__(self):
         return f"{self.item_category} - {self.date}"
     
@@ -51,6 +52,7 @@ class  found_item(models.Model):
     brand = models.CharField(max_length=100)
     material = models.CharField(max_length=100,default='')
     item_category = models.CharField(max_length=50, choices=ITEM_CHOICES,default='')
+    image = models.ImageField(upload_to="shop/images",default="")
     def __str__(self):
         return f"{self.item_category} - {self.date}"
     

@@ -101,7 +101,7 @@
     </div>
         
     <div class="lost-form">
-        <form id="lostForm" method="post" action="{% url 'save_lost_item' %}">
+        <form id="lostForm" method="post" action="{% url 'save_lost_item' %}" novalidate>
             {% csrf_token %}
             <h2>Lost Item Details</h2> <!-- Changed heading text -->
             <div class="form-question">
@@ -141,7 +141,7 @@
                     <option value="round">Round</option>
                     <option value="square">Square</option>
                     <option value="rectangular">Rectangular</option>
-                    <option value="bulbous">Bulbous</option>
+                    {% comment %} <option value="bulbous">Bulbous</option> {% endcomment %}
                     <option value="cylindrical">Cylindrical</option>
                     <option value="other">Other (Specify Below)</option>
                 </select>
@@ -179,12 +179,14 @@
                 </select>
                 <!-- Additional input for material when "Other" is selected -->
                 <input type="text" id="otherMaterial" name="otherMaterial" placeholder="Specify Material">
+
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image"><br><br>
             </div>
             <!-- Questions for lost bottle -->
             <div id="bottle-questions" class="form-question" style="display: none;">
                 <!-- Watch-specific questions here -->
-                
-                
+                   
             </div>
             <!-- Questions for lost watch -->
             <div id="watch-questions" class="form-question" style="display: none;">

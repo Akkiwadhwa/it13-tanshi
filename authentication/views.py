@@ -151,7 +151,7 @@ def save_lost_item(request):
             color = request.POST.get('color')
             brand = request.POST.get('brand')
             material = request.POST.get('material')
-            
+            image = request.FILES.get('image') 
             # Create a new LostItem instance
             new_lost_item = lost_item.objects.create(
                 item_category=category,
@@ -162,17 +162,18 @@ def save_lost_item(request):
                 shape=shape,
                 color=color,
                 brand=brand,
-                material=material
+                material=material,
+                image=image
             )
             # No need to call lost_item.save() as it's already saved by create()
 
-            return JsonResponse({'success': True})  # Return success response
+            return render(request, 'authentication/response.html')
         except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+            # Handle any exceptions and render an error page
+            return render(request, 'error.html', {'error_message': str(e)})
     else:
         # Handle invalid request method
-        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
-        
+        return render(request, 'error.html', {'error_message': 'Invalid request method'})
 def save_found_item(request):
     if request.method == 'POST':
         try:
@@ -223,6 +224,8 @@ def saveenqury(request):
         send_mail(subject, message, sender_email, recipient_list)
     return render(request,"thank_you.html")
 
+def response(request):
+    return render(request, 'response.html')
 def thank_you(request):
     return render(request, 'thank_you.html')
 def phone_page(request):
