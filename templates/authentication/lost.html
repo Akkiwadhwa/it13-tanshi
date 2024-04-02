@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include SweetAlert JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -108,7 +111,7 @@
     </div>
 
     <div class="lost-form">
-        <form id="lostForm" method="post" action="{% url 'save_lost_item' %}" novalidate>
+        <form id="lostForm" method="post" action="{% url 'save_lost_item' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <h2>Lost Item Details</h2> <!-- Changed heading text -->
             <div class="form-question">
@@ -198,22 +201,56 @@
         document.getElementById('lostForm').addEventListener('submit', function (event) {
             // Prevent default form submission
             event.preventDefault();
-
+    
             // Perform custom validation
             if (validateForm()) {
-                // If validation passes, submit the form
-                this.submit();
+                // If validation passes, gather form data
+                var formData = new FormData(this);
+    
+                // Send form data via API
+                fetch('/save_lost_item', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // If API request succeeds, show success message
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // Show success message using SweetAlert
+                    swal.fire({
+                        title: 'Item added',
+                        text: 'Your item is added, we will inform you as soon as we find it.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        // After the user clicks OK, reload the page
+                        window.location.reload();
+                    });
+                })
+                .catch(error => {
+                    // Show error message if API request fails
+                    swal.fire({
+                        title: 'Error',
+                        text: 'There was an error adding your item. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                });
             }
         });
-
+    
         function validateForm() {
             // Get all required fields
             var requiredFields = document.querySelectorAll('#lostForm [required]');
-
+    
             // Loop through each required field
             for (var i = 0; i < requiredFields.length; i++) {
                 var field = requiredFields[i];
-
+    
                 // Check if the field is empty
                 if (!field.value.trim()) {
                     // If empty, display an error message (you can customize this part)
@@ -223,11 +260,12 @@
                     return false; // Validation failed
                 }
             }
-
+    
             // If all required fields are filled, return true (validation passes)
             return true;
         }
     </script>
+    
 
 
     <script>

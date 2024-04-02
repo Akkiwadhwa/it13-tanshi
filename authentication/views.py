@@ -122,7 +122,7 @@ def activate(request, uidb64, token):
 def signin(request):
     if request.user.is_authenticated:
         # If user is already authenticated, redirect them to another page
-        return render(request, 'authentication\l.html')
+        return redirect('l')
     if request.method == 'POST':
         
         username = request.POST['username']
@@ -157,6 +157,7 @@ def save_lost_item(request):
             brand = request.POST.get('brand')
             material = request.POST.get('material')
             image = request.FILES.get('image') 
+            print(request.FILES)
             # Create a new LostItem instance
             new_lost_item = lost_item.objects.create(
                 item_category=category,
@@ -171,8 +172,9 @@ def save_lost_item(request):
                 image=image
             )
             # No need to call lost_item.save() as it's already saved by create()
+            return JsonResponse({'message':'uploaded'})
 
-            return render(request, 'authentication/response.html')
+            # return render(request, 'authentication/response.html')
         except Exception as e:
             print(e)
             # Handle any exceptions and render an error page
