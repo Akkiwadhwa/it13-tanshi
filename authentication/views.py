@@ -120,7 +120,11 @@ def activate(request, uidb64, token):
 
 
 def signin(request):
+    if request.user.is_authenticated:
+        # If user is already authenticated, redirect them to another page
+        return render(request, 'authentication\l.html')
     if request.method == 'POST':
+        
         username = request.POST['username']
         pass1 = request.POST['pass1']
         
@@ -141,6 +145,7 @@ def signin(request):
 def save_lost_item(request):
     if request.method == 'POST':
         try:
+            print(request.POST)
             # Extract form data from the request
             category = request.POST.get('item-category')
             date = request.POST.get('date')
@@ -169,6 +174,7 @@ def save_lost_item(request):
 
             return render(request, 'authentication/response.html')
         except Exception as e:
+            print(e)
             # Handle any exceptions and render an error page
             return render(request, 'error.html', {'error_message': str(e)})
     else:
@@ -247,7 +253,7 @@ def contact_page(request):
 
     return render(request, 'contact.html')
 def l(request):
-    return render(request, 'l.html')
+    return render(request, 'authentication\l.html')
 def about(request):
     return render(request, 'about.html')
 def lost(request):

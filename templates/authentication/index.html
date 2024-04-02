@@ -82,8 +82,8 @@
     {% else %}
     <br/>
     <br/>
-    <button type="submit"><a href="/signup">Sign Up</a></button>
-    <button type="submit"><a href="/signin">Sign In</a></button>
+    <button type="submit"><a href="{% url 'signup' %}">Sign Up</a></button>
+    <button type="submit"><a href="{% url 'signin' %}">Sign In</a></button>
     {% endif %}
 </body>
 </html>

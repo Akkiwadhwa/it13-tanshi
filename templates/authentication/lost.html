@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
             margin: 0;
             padding: 0;
             background-size: cover;
-            background-position: center top; /* Adjusted background position */
+            background-position: center top;
+            /* Adjusted background position */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -36,12 +38,14 @@
         .lost-form {
             position: relative;
             background-color: #e0e5f2;
-            padding: 30px; /* Increased padding */
+            padding: 30px;
+            /* Increased padding */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
-            margin-top: 120px; /* Increased margin */
+            margin-top: 120px;
+            /* Increased margin */
             overflow: hidden;
             box-sizing: border-box;
         }
@@ -56,7 +60,8 @@
             color: #333333;
         }
 
-        .form-question input, .form-question select {
+        .form-question input,
+        .form-question select {
             width: 100%;
             padding: 10px;
             margin-bottom: 16px;
@@ -91,22 +96,24 @@
         }
 
         h2 {
-            color: black; /* Changed heading color to black */
+            color: black;
+            /* Changed heading color to black */
         }
     </style>
 </head>
+
 <body>
     <div class="image-container">
         <img src="static/images/bg.png" alt="Background Image">
     </div>
-        
+
     <div class="lost-form">
         <form id="lostForm" method="post" action="{% url 'save_lost_item' %}" novalidate>
             {% csrf_token %}
             <h2>Lost Item Details</h2> <!-- Changed heading text -->
             <div class="form-question">
                 <label for="item-category">Select the lost item category:</label>
-                <select id="item-category" name="item-category" onchange="showQuestions()">
+                <select id="item-category" name="item-category">
                     <option value="">Select an item...</option>
                     <option value="purse">Purse/Bag</option>
                     <option value="phone">Phone</option>
@@ -117,7 +124,7 @@
                 </select>
             </div>
             <!-- Questions for lost purse -->
-            <div id="purse-questions" class="form-question" style="display: none;">
+            <div id="purse-questions" class="form-question">
                 <label for="date">Date:</label>
                 <input type="date" id="date" name="date" required>
 
@@ -141,7 +148,7 @@
                     <option value="round">Round</option>
                     <option value="square">Square</option>
                     <option value="rectangular">Rectangular</option>
-                    {% comment %} <option value="bulbous">Bulbous</option> {% endcomment %}
+                    <!-- <option value="bulbous">Bulbous</option> -->
                     <option value="cylindrical">Cylindrical</option>
                     <option value="other">Other (Specify Below)</option>
                 </select>
@@ -164,8 +171,8 @@
                     <option value="brand1">Baggit</option>
                     <option value="brand2">Zara</option>
                     <option value="brand3">H&M</option>
-                    <option value="brand3">Gucci</option>
-                    <option value="brand3">Valentino</option>
+                    <option value="brand4">Gucci</option>
+                    <option value="brand5">Valentino</option>
                     <option value="other">Other (Specify Below)</option>
                     <!-- Add more brands as needed -->
                 </select>
@@ -183,32 +190,46 @@
                 <label for="image">Image:</label>
                 <input type="file" id="image" name="image"><br><br>
             </div>
-            <!-- Questions for lost bottle -->
-            <div id="bottle-questions" class="form-question" style="display: none;">
-                <!-- Watch-specific questions here -->
-                   
-            </div>
-            <!-- Questions for lost watch -->
-            <div id="watch-questions" class="form-question" style="display: none;">
-                <!-- Watch-specific questions here -->
-            </div>
-            <!-- Questions for lost phone -->
-            <div id="phone-questions" class="form-question" style="display: none;">
-                <!-- Phone-specific questions here -->
-            </div>
-            <!-- Questions for lost umbrella -->
-            <div id="umbrella-questions" class="form-question" style="display: none;">
-                <!-- Umbrella-specific questions here -->
-            </div>
-            <!-- Questions for other lost items -->
-            <div id="other-questions" class="form-question" style="display: none;">
-                <!-- Questions for other items here -->
-            </div>
             <button type="submit" class="button">Submit</button>
         </form>
     </div>
 
-   
+    <script>
+        document.getElementById('lostForm').addEventListener('submit', function (event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Perform custom validation
+            if (validateForm()) {
+                // If validation passes, submit the form
+                this.submit();
+            }
+        });
+
+        function validateForm() {
+            // Get all required fields
+            var requiredFields = document.querySelectorAll('#lostForm [required]');
+
+            // Loop through each required field
+            for (var i = 0; i < requiredFields.length; i++) {
+                var field = requiredFields[i];
+
+                // Check if the field is empty
+                if (!field.value.trim()) {
+                    // If empty, display an error message (you can customize this part)
+                    alert('Please fill in all required fields.');
+                    // Focus on the first empty field (you can customize this part)
+                    field.focus();
+                    return false; // Validation failed
+                }
+            }
+
+            // If all required fields are filled, return true (validation passes)
+            return true;
+        }
+    </script>
+
+
     <script>
         function showQuestions() {
             var selectedItem = document.getElementById('item-category').value;
@@ -269,4 +290,5 @@
         }
     </script>
 </body>
+
 </html>

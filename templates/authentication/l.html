@@ -143,9 +143,9 @@
 <body>
     <nav>
         <ul>
-            <li><a href="signin.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="{% url 'l' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
     </nav>
     <div class="image-container">
@@ -154,21 +154,21 @@
     <div class="content-container">
         <div class="left-side">
             <h1>Lost Items</h1>
-            <button class="button"><a href="lost.html">Report Lost Item</a><div class="symbol">💼</div></button>
+            <button class="button"><a href="{% url 'lost' %}">Report Lost Item</a><div class="symbol">💼</div></button>
         </div>
         <div class="right-side">
             <h1>Found Items</h1>
-            <button class="button"><a href="found.html">Report Found Item</a><div class="symbol">🔍</div></button>
+            <button class="button"><a href="{% url 'found' %}">Report Found Item</a><div class="symbol">🔍</div></button>
         </div>
     </div>
     <script>
         // Add event listeners to dynamically update href attributes
         document.querySelector('.left-side button a').addEventListener('click', function () {
-            window.location.href = 'lost.html';
+            window.location.href = "{% url 'lost' %}";
         });
 
         document.querySelector('.right-side button a').addEventListener('click', function () {
-            window.location.href = 'found.html';
+            window.location.href = "{% url 'found' %}";
         });
     </script>
 </body>
